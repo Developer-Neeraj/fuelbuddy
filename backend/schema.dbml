@@ -7,7 +7,8 @@ Table tasks {
   status task_status [not null, default: 'TODO']
   created_at timestamp [default: `now()`]
   updated_at timestamp [default: `now()`]
-  user_id UUID [ref: > users.id]
+  user_id varchar [not null]
+  shareid varchar [not null]
 }
 
 Table users {
