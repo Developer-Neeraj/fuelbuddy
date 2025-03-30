@@ -1,0 +1,25 @@
+// Task Management Schema
+
+Table tasks {
+  id UUID [pk, default: `gen_random_uuid()`]
+  title varchar [not null]
+  description text
+  status task_status [not null, default: 'TODO']
+  due_date timestamp
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  user_id UUID [ref: > users.id, not null]
+}
+
+Table users {
+  id UUID [pk, default: `gen_random_uuid()`]
+  email varchar [unique, not null]
+  name varchar [not null]
+  created_at timestamp [default: `now()`]
+}
+
+Enum task_status {
+  TODO
+  IN_PROGRESS
+  COMPLETED
+}
